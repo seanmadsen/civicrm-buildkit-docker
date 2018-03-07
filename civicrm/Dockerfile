@@ -1,4 +1,4 @@
-FROM php:7.0-apache-jessie
+FROM php:5.6-apache-jessie
 
 # Install apt packages
 #
@@ -43,7 +43,7 @@ RUN curl -sL https://deb.nodesource.com/setup_9.x | bash \
 RUN docker-php-ext-install bcmath \
   && docker-php-ext-install gd \
   && docker-php-ext-install gettext \
-  && pecl install imagick \
+  && printf "\n" | pecl install imagick \
   && docker-php-ext-configure imap --with-kerberos --with-imap-ssl \
   && docker-php-ext-install imap \
   && docker-php-ext-install intl \
@@ -51,7 +51,7 @@ RUN docker-php-ext-install bcmath \
   && docker-php-ext-install mysqli \
   && docker-php-ext-install pdo_mysql \
   && docker-php-ext-install soap \
-  && pecl install xdebug \
+  && printf "\n" | pecl install xdebug-2.5.5 \
   && docker-php-ext-install zip
 
 RUN a2enmod rewrite
